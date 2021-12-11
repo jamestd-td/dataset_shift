@@ -1,5 +1,3 @@
-
-
 import tensorflow as tf
 import keras_tuner as kt
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -9,11 +7,9 @@ import numpy as np
 import os
 import seaborn as sns
 
-
 # =============================================================================
 #  Tensorflow setup for using distributed / parallel computing
 # =============================================================================
-
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -102,7 +98,6 @@ ds_em_in = os.path.join(ds_em_dir,'ds_in')
 ds_em_sh = os.path.join(ds_em_dir,'ds_sh')
 ds_em_mc = os.path.join(ds_em_dir,'ds_mc')
 ds_em_niaid = os.path.join(ds_em_dir,'ds_niaid')
-
 
 # =============================================================================
 #  flow_from_directory Method
@@ -232,7 +227,6 @@ def build_model(hp):
 #  Initializing Keras tuner under Multi GPU 
 # =============================================================================
 
-
 with strategy.scope():
     
     tuner = kt.Hyperband(
@@ -253,8 +247,7 @@ tuner.search(
     train_ds,
     validation_data = val_ds,
     epochs = 10,
-    callbacks=[tf.keras.callbacks.EarlyStopping(monitor = 'val_loss',patience = 1)],
-)
+    callbacks=[tf.keras.callbacks.EarlyStopping(monitor = 'val_loss',patience = 1)],)
 
 # =============================================================================
 #  Selection of best model
@@ -539,11 +532,9 @@ fpr_ex2 = dict()
 tpr_ex2 = dict()
 roc_auc_score_ex2 = dict()
 
-
 fpr_ex3 = dict()
 tpr_ex3 = dict()
 roc_auc_score_ex3 = dict()
-
 
 num_classes=2
 
@@ -585,7 +576,6 @@ lw = 2
 plt.plot(fpr_ho[1], tpr_ho[1], '*-', color='xkcd:indigo',
          lw=lw, label='IN* (area = %0.4f)' % roc_auc_score_ho[1])
 
-
 plt.plot(fpr_ex1[1], tpr_ex1[1], '*-', color='xkcd:plum',
          lw=lw,  label='SH# (area = %0.4f)' % roc_auc_score_ex1[1])
 
@@ -594,7 +584,6 @@ plt.plot(fpr_ex2[1], tpr_ex2[1], '*-', color='xkcd:magenta',
 
 plt.plot(fpr_ex3[1], tpr_ex3[1],'*-', color='xkcd:tomato',
          lw=lw, label='NIAID# (area = %0.4f)' % roc_auc_score_ex3[1])
-
 
 plt.plot([0, 1], [0, 1], ':', color='xkcd:red', lw=lw) # reference ROC 50% AUC
 plt.xlabel('False Positive Rate',fontsize=20)
