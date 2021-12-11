@@ -10,8 +10,8 @@ from glob import glob
 #  Set directories for ROI segmentation
 # =============================================================================
 
-model_path = 'model'
-source_dir = 'dataset'
+model_path = '/model'
+source_dir = '/dataset'
 segmentation_dir = os.path.join(source_dir,'segmentation')
 segmentation_result_dir = os.path.join(source_dir,'segmentation_result')
 
