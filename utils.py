@@ -30,8 +30,8 @@ def confidence_interval_sen_spe(tp,tn,fp,fn):
       
     ul_sen=((sen + (z*z)/(2*n))+(z*(sqrt(((sen*(1-sen))/n) + ((z*z)/(4*(n*n)))))))/(1 + ((z*z)/n)) # Upper level sensitivity
     ll_sen=((sen + (z*z)/(2*n))-(z*(sqrt(((sen*(1-sen))/n) + ((z*z)/(4*(n*n)))))))/(1 + ((z*z)/n)) # Lower level sensitivity
-    ul_spe=((spe + (z*z)/(2*n))+(z*(sqrt(((spe*(1-spe))/n) + ((z*z)/(4*(n*n)))))))/(1 + ((z*z)/n)) # Upper level specificity
-    ll_spe=((spe + (z*z)/(2*n))-(z*(sqrt(((spe*(1-spe))/n) + ((z*z)/(4*(n*n)))))))/(1 + ((z*z)/n)) # Lower level specificity
+    ul_spe=((spe + (z*z)/(2*n1))+(z*(sqrt(((spe*(1-spe))/n1) + ((z*z)/(4*(n1*n1)))))))/(1 + ((z*z)/n1)) # Upper level specificity
+    ll_spe=((spe + (z*z)/(2*n1))-(z*(sqrt(((spe*(1-spe))/n1) + ((z*z)/(4*(n1*n1)))))))/(1 + ((z*z)/n1)) # Lower level specificity
     
     return (adj_sen,ll_sen,ul_sen,adj_spe,ll_spe,ul_spe)
 
