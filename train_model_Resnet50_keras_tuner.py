@@ -285,6 +285,12 @@ ground_trouth = test_ds_ho.class_indices
 
 # =============================================================================
 #  Delivery report and model performance for holdout test set
+#
+#  TP = True positive: Sick people correctly identified as sick
+#  FP = False positive: Healthy people incorrectly identified as sick
+#  TN = True negative: Healthy people correctly identified as healthy
+#  FN = False negative: Sick people incorrectly identified as healthy
+#
 # =============================================================================
 
 f1s = [0,0,0]
