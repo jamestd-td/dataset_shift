@@ -50,8 +50,8 @@ datagen = tf.keras.preprocessing.image.ImageDataGenerator(
 #  use only those directory and comment all other directory (make inactive) 
 # =============================================================================
 
-source_dir = 'dataset'
-kt_dir = 'dataset/d121_kt_check_points'
+source_dir = '/dataset'
+kt_dir = '/dataset/d121_kt_check_points'
 
 # =============================================================================
 #  directory setup for IN dataset
