@@ -53,7 +53,8 @@ def image_generator(image_files, target_size = (256,256)):
         yield load_image(image_files, target_size)
         
 # =============================================================================
-#  resize, find contours, extract ROI using bounding box and saved files
+#  resize, find contours, extract ROI using bounding box and saved files 
+#  saved image size = 224 x 224
 # =============================================================================
               
 def save_result(save_path, npyfile, image_files):
@@ -88,7 +89,6 @@ def save_result(save_path, npyfile, image_files):
 # =============================================================================
 #  Load saved model from directory
 # =============================================================================
-
 
 model_path = model_path
 model = tf.keras.models.load_model(model_path,
