@@ -1,5 +1,3 @@
-
-
 import tensorflow as tf
 import keras_tuner as kt
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -9,11 +7,9 @@ import numpy as np
 import os
 import seaborn as sns
 
-
 # =============================================================================
 #  Tensorflow setup for using distributed / parallel computing
 # =============================================================================
-
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -232,7 +228,6 @@ def build_model(hp):
 #  Initializing Keras tuner under Multi GPU 
 # =============================================================================
 
-
 with strategy.scope():
     
     tuner = kt.Hyperband(
@@ -253,8 +248,7 @@ tuner.search(
     train_ds,
     validation_data = val_ds,
     epochs = 10,
-    callbacks=[tf.keras.callbacks.EarlyStopping(monitor = 'val_loss',patience = 1)],
-)
+    callbacks=[tf.keras.callbacks.EarlyStopping(monitor = 'val_loss',patience = 1)],)
 
 # =============================================================================
 #  Selection of best model
@@ -338,7 +332,7 @@ sns.heatmap(
 
 plt.xlabel("Model Predicted")
 plt.ylabel("Ground Truth")
-plt.savefig('conf_matrix_ho.jpg',dpi=300)
+plt.savefig('/model_evaluation_results/R50_conf_matrix_ho.jpg',dpi=300)
 
 # =============================================================================
 # Test model on extramural test set1
@@ -399,7 +393,7 @@ sns.heatmap(
 
 plt.xlabel("Model Predicted")
 plt.ylabel("Ground Truth")
-plt.savefig('conf_matrix_ex1.jpg',dpi=300)
+plt.savefig('/model_evaluation_results/R50_conf_matrix_ex1.jpg',dpi=300)
 
 # =============================================================================
 # Test model on extramural test set2
@@ -460,7 +454,7 @@ sns.heatmap(
 
 plt.xlabel("Model Predicted")
 plt.ylabel("Ground Truth")
-plt.savefig('conf_matrix_ex2.jpg',dpi=300)
+plt.savefig('/model_evaluation_results/R50_conf_matrix_ex2.jpg',dpi=300)
 
 # =============================================================================
 # Test model on extramural test set3
@@ -521,7 +515,7 @@ sns.heatmap(
 
 plt.xlabel("Model Predicted")
 plt.ylabel("Ground Truth")
-plt.savefig('conf_matrix_ex3.jpg',dpi=300)
+plt.savefig('/model_evaluation_results/R50_conf_matrix_ex3.jpg',dpi=300)
 
 # =============================================================================
 # ROC curve where positive label is tb and plot holdout and extramural test together
@@ -539,11 +533,9 @@ fpr_ex2 = dict()
 tpr_ex2 = dict()
 roc_auc_score_ex2 = dict()
 
-
 fpr_ex3 = dict()
 tpr_ex3 = dict()
 roc_auc_score_ex3 = dict()
-
 
 num_classes=2
 
@@ -585,7 +577,6 @@ lw = 2
 plt.plot(fpr_ho[1], tpr_ho[1], '*-', color='xkcd:indigo',
          lw=lw, label='IN* (area = %0.4f)' % roc_auc_score_ho[1])
 
-
 plt.plot(fpr_ex1[1], tpr_ex1[1], '*-', color='xkcd:plum',
          lw=lw,  label='SH# (area = %0.4f)' % roc_auc_score_ex1[1])
 
@@ -595,10 +586,8 @@ plt.plot(fpr_ex2[1], tpr_ex2[1], '*-', color='xkcd:magenta',
 plt.plot(fpr_ex3[1], tpr_ex3[1],'*-', color='xkcd:tomato',
          lw=lw, label='NIAID# (area = %0.4f)' % roc_auc_score_ex3[1])
 
-
 plt.plot([0, 1], [0, 1], ':', color='xkcd:red', lw=lw) # reference ROC 50% AUC
 plt.xlabel('False Positive Rate',fontsize=20)
 plt.ylabel('True Positive Rate',fontsize=20)
 plt.legend(loc="lower right",fontsize=20)
-plt.savefig('roc_train_in.jpg',dpi=300)
-
+plt.savefig('/model_evaluation_results/R50_roc_train_in.jpg',dpi=300)
