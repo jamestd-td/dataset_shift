@@ -35,7 +35,6 @@ def confidence_interval_sen_spe(tp,tn,fp,fn):
     
     return (adj_sen,ll_sen,ul_sen,adj_spe,ll_spe,ul_spe)
 
-
 # =============================================================================
 #  Confidence Intervel for AUC Area under Receiver operating characteristic
 #  The Confidence Interval use The formula for SE(AUC) was given by Hanley and
@@ -46,7 +45,6 @@ def confidence_interval_sen_spe(tp,tn,fp,fn):
 #  N1 = Total number of Positive sample in dataset
 #  N2 = Total number of Negative samples in dataset
 # =============================================================================
-
 
 def confidence_interval_auc(auc, n1, n2):
     AUC = auc
@@ -71,7 +69,7 @@ def confidence_interval_auc(auc, n1, n2):
 #  The argumemnt to pass is data frame 
 # =============================================================================
 
-def train_validate_test_split(df, train_percent=.800000, validate_percent=.1, seed=None):
+def train_validate_test_split(df, train_percent=.800000, validate_percent=.1, seed=42):
     np.random.seed(seed)
     perm = np.random.permutation(df.index)
     m = len(df.index)
@@ -98,10 +96,5 @@ def train_validate_test_split(df, train_percent=.800000, validate_percent=.1, se
 
 def move_files(df, in_path, dest_path):
     image=df['fname']
-    print(image[0:len(image)])
-    
     for i in image[0:]: 
-        shutil.move(os.path.join(in_path, i),
-                    dest_path)
-        print(i)
-
+        shutil.move(os.path.join(in_path, i),dest_path)
